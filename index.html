@@ -177,8 +177,6 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 
     const oldThumbnail = card.querySelector('.thumbnail-link');
     if (oldThumbnail) oldThumbnail.replaceWith(wrap);
-    const playButton = card.querySelector('.play-video');
-    if (playButton) playButton.remove();
   }
 
   function makePlaylistCard(video) {
@@ -212,15 +210,8 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
     const heading = document.createElement('h3');
     heading.textContent = title;
 
-    const playButton = document.createElement('button');
-    playButton.className = 'play-video';
-    playButton.type = 'button';
-    playButton.textContent = '▶ PLAY HERE';
-    playButton.addEventListener('click', function () {
-      playVideoInCard(card, videoId, title);
-    });
-
-    card.append(thumbnailLink, heading, playButton);
+    // Clicking the thumbnail immediately replaces it with the embedded player.
+    card.append(thumbnailLink, heading);
     return card;
   }
 
