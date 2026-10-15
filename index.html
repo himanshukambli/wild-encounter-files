@@ -157,6 +157,43 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  function makePlaylistCard(video) {
+    const card = document.createElement('article');
+    card.className = 'video-card';
+
+    const videoId = video.id || '';
+    const videoUrl = video.url || ('https://www.youtube.com/watch?v=' + encodeURIComponent(videoId));
+
+    const thumbnailLink = document.createElement('a');
+    thumbnailLink.href = videoUrl;
+    thumbnailLink.target = '_blank';
+    thumbnailLink.rel = 'noopener';
+
+    const image = document.createElement('img');
+    image.className = 'video-thumb';
+    image.src = video.thumbnail || ('https://i.ytimg.com/vi/' + encodeURIComponent(videoId) + '/hqdefault.jpg');
+    image.alt = video.title || 'Wildlife video thumbnail';
+    image.loading = 'lazy';
+    image.onerror = function () {
+      image.onerror = null;
+      image.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(videoId) + '/mqdefault.jpg';
+    };
+    thumbnailLink.appendChild(image);
+
+    const heading = document.createElement('h3');
+    heading.textContent = video.title || 'Wildlife video';
+
+    const watchLink = document.createElement('a');
+    watchLink.className = 'watch';
+    watchLink.href = videoUrl;
+    watchLink.target = '_blank';
+    watchLink.rel = 'noopener';
+    watchLink.textContent = 'WATCH VIDEO ↗';
+
+    card.append(thumbnailLink, heading, watchLink);
+    return card;
+  }
+
   async function loadPlaylists() {
     const apiUrl = 'https://wild-encounter-playlists.kambli-himanshu.workers.dev/api/playlists';
     const containers = Array.from(document.querySelectorAll('.playlist-grid[data-playlist-id]'));
