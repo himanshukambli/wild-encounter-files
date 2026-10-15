@@ -4,114 +4,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Wild Encounter Files — wildlife encounters, predators and animal survival stories.">
+<meta name="theme-color" content="#101713">
 <title>Wild Encounter Files | Into the Wild</title>
-<meta name="description" content="Explore wildlife encounters, predators and animal survival stories.">
+
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#101713;color:#f5f3e9;font-family:Arial,sans-serif;line-height:1.6}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{margin:0;background:#101713;color:#f5f3e9;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
 a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:5;background:#101713;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #394238}
+header{position:sticky;top:0;z-index:10;background:#101713f5;padding:15px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #394238}
 .logo{font-size:19px;font-weight:900;letter-spacing:1px}
 .logo span,em{color:#d9b96d;font-style:normal}
-nav{display:flex;gap:22px;align-items:center;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+nav{display:flex;gap:20px;align-items:center;font-size:12px;letter-spacing:1px;text-transform:uppercase}
 nav a:hover{color:#d9b96d}
-nav .subscribe{border:1px solid #d9b96d;padding:9px 12px;color:#d9b96d}
-.menu{display:none;background:none;color:white;border:0;font-size:25px;cursor:pointer}
-.hero{min-height:570px;display:flex;align-items:center;position:relative;background:#18261c url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07100bf0,#07100ba8 58%,#07100b22)}
-.hero-content{position:relative;width:88%;max-width:1150px;margin:auto;padding:70px 0}
+.subscribe{border:1px solid #d9b96d;padding:9px 12px;color:#d9b96d}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.hero{min-height:570px;display:flex;align-items:center;background:linear-gradient(90deg,#07100bf0,#07100ba8 58%,#07100b22),url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat}
+.hero-content{width:88%;max-width:1150px;margin:auto;padding:70px 0}
 .kicker{font-size:10px;color:#d9b96d;letter-spacing:3px;font-weight:bold;text-transform:uppercase}
 h1{font-size:clamp(48px,8vw,94px);line-height:.98;margin:22px 0;font-weight:900}
-.lead{max-width:520px;color:#e1e5dc;line-height:1.8}
+.lead{max-width:550px;color:#e1e5dc;line-height:1.8}
 .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .btn{display:inline-block;padding:13px 18px;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase}
 .primary{background:#d9b96d;color:#151a13}
 .secondary{border:1px solid #ddd}
 section.content{max-width:1150px;width:88%;margin:auto;padding:65px 0}
 h2{font-size:clamp(34px,5vw,52px);margin:8px 0 16px;line-height:1.1}
-.intro{color:#bfc7bc;line-height:1.8;max-width:680px}
-.playlist-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
-.playlist-card{background:#1a241d;border:1px solid #394238;padding:16px;min-width:0}
-.playlist-card h3{font-size:21px;line-height:1.25;margin:0 0 8px}
-.playlist-card p{color:#bfc7bc;font-size:13px;min-height:42px;margin:0 0 15px}
-.playlist-card iframe{width:100%;aspect-ratio:16/9;border:0;display:block;background:#080b09}
-.playlist-link{display:inline-block;margin-top:12px;color:#d9b96d;font-size:11px;font-weight:bold}
+.intro{color:#bfc7bc;line-height:1.8;max-width:720px}
+.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
+.video-card{background:#1a241d;border:1px solid #394238;padding:16px;min-width:0}
+.video-card h3{font-size:21px;line-height:1.25;margin:0 0 8px}
+.video-card p{color:#bfc7bc;font-size:13px}
+.player{width:100%;aspect-ratio:16/9;border:0;display:block;background:#080b09}
+.watch{display:inline-block;margin-top:10px;color:#d9b96d;font-size:11px;font-weight:bold}
+.divider{height:1px;background:#394238;margin:30px 0}
 .banner{background:linear-gradient(90deg,#101713ed,#10171388),url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;padding:65px 6%;text-align:center}
 .banner p{color:#c6cec2;line-height:1.8}
 .about{display:grid;grid-template-columns:1fr 2fr;gap:35px;align-items:center}
 .monogram{font-size:100px;font-weight:900;color:#d9b96d;text-align:center}
-footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;color:#bfc7bc;font-size:12px}
-@media(max-width:850px){.playlist-grid{grid-template-columns:1fr 1fr}}
+footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#bfc7bc;font-size:12px}
+@media(max-width:900px){.video-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){
-header{flex-wrap:wrap}.menu{display:block}
-nav{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;padding-top:12px}
-nav.open{display:flex}nav a{padding:12px 0}
-nav .subscribe{text-align:center;margin-top:8px}
-.hero{min-height:520px;background-position:60% center}
-.playlist-grid{grid-template-columns:1fr}
-section.content{padding:50px 0}
-.about{grid-template-columns:1fr;gap:5px}
-.monogram{font-size:65px}
+ header{flex-wrap:wrap}.menu{display:block}
+ nav{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;padding-top:12px}
+ nav.open{display:flex}nav a{padding:12px 0}
+ .subscribe{text-align:center;margin-top:8px}
+ .hero{min-height:510px;background-position:60% center}
+ .video-grid{grid-template-columns:1fr}
+ section.content{padding:48px 0}
+ .about{grid-template-columns:1fr;gap:5px}
+ .monogram{font-size:65px}
 }
 </style>
 </head>
+
 <body>
 <header>
 <a class="logo" href="#home">WILD ENCOUNTER <span>FILES</span></a>
-<button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
+<button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav id="nav">
 <a href="#home">Home</a>
-<a href="#videos">Playlists</a>
-<a href="#stories">Wildlife Stories</a>
+<a href="#latest">Latest Videos</a>
+<a href="#playlists">Playlists</a>
 <a href="#about">About</a>
 <a class="subscribe" href="https://www.youtube.com/@wildencounterfiles24" target="_blank" rel="noopener">Subscribe ↗</a>
 </nav>
 </header>
+
 <main>
 <section class="hero" id="home">
 <div class="hero-content">
 <div class="kicker">Nature • Instinct • Survival</div>
 <h1>THE WILD<br><em>HAS NO SCRIPT.</em></h1>
-<p class="lead">Step into extraordinary wildlife encounters, dramatic predator moments and incredible stories of survival in the natural world.</p>
+<p class="lead">Discover extraordinary wildlife encounters, dramatic predator moments and incredible stories of survival in the natural world.</p>
 <div class="buttons">
-<a class="btn primary" href="#videos">Explore Playlists ↓</a>
-<a class="btn secondary" href="https://www.youtube.com/@wildencounterfiles24" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+<a class="btn primary" href="#latest">Watch Latest Videos ↓</a>
+<a class="btn secondary" href="https://www.youtube.com/@wildencounterfiles24" target="_blank" rel="noopener">Visit YouTube ↗</a>
 </div>
 </div>
 </section>
 
-<section class="content" id="videos">
-<div class="kicker">EXPLORE OUR COLLECTION</div>
-<h2>Wildlife <em>Playlists</em></h2>
-<p class="intro">Choose a playlist below and browse wildlife encounters, predator behaviour and unforgettable survival stories. Select a video inside the player to watch it here.</p>
-<div class="playlist-grid">
+<section class="content" id="latest">
+<div class="kicker">FRESH FROM THE WILD</div>
+<h2>Latest <em>Videos</em></h2>
+<p class="intro">Watch the newest uploads from Wild Encounter Files. This player uses your channel's automatic uploads playlist, so you don't have to update the website for every new upload.</p>
 
-<article class="playlist-card">
+<div class="video-grid">
+<article class="video-card">
+<h3>Latest Channel Uploads</h3>
+<p>Browse the channel's newest public videos and select one to play.</p>
+<iframe class="player"
+src="https://www.youtube-nocookie.com/embed/videoseries?list=UUT44a1Dt0N1heM4qxSG1akg"
+title="Latest Wild Encounter Files uploads"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<a class="watch" href="https://www.youtube.com/channel/UCT44a1Dt0N1heM4qxSG1akg/videos" target="_blank" rel="noopener">VIEW ALL VIDEOS ON YOUTUBE ↗</a>
+</article>
+</div>
+
+<div class="divider"></div>
+
+<div class="kicker">MORE FROM OUR CHANNEL</div>
+<h2>Featured <em>Playlists</em></h2>
+<p class="intro">Explore the three collections below. Select a video inside a player to watch it on this website.</p>
+
+<div class="video-grid" id="playlists">
+<article class="video-card">
 <h3>Wild Encounters</h3>
-<p>Explore dramatic moments and unexpected encounters in nature.</p>
-<iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLGFQBs9S98bI" title="Wild Encounter Files Playlist 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<a class="playlist-link" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN PLAYLIST ON YOUTUBE ↗</a>
+<p>Dramatic moments and unexpected encounters in nature.</p>
+<iframe class="player"
+src="https://www.youtube-nocookie.com/embed/videoseries?list=PLGFQBs9S98bI"
+title="Wild Encounter Files playlist one"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
 </article>
 
-<article class="playlist-card">
+<article class="video-card">
 <h3>Predators of the Wild</h3>
-<p>Discover the instincts and strategies that help wild animals survive.</p>
-<iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLKGFUaIbng-s" title="Wild Encounter Files Playlist 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<a class="playlist-link" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN PLAYLIST ON YOUTUBE ↗</a>
+<p>Discover the instincts and strategies of wild animals.</p>
+<iframe class="player"
+src="https://www.youtube-nocookie.com/embed/videoseries?list=PLKGFUaIbng-s"
+title="Wild Encounter Files playlist two"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
 </article>
 
-<article class="playlist-card">
+<article class="video-card">
 <h3>Animal Survival Stories</h3>
-<p>Discover the remarkable struggles and survival instincts of wildlife.</p>
-<iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLbMDoDX975cg" title="Wild Encounter Files Playlist 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<a class="playlist-link" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN PLAYLIST ON YOUTUBE ↗</a>
+<p>Remarkable survival instincts and struggles in the wild.</p>
+<iframe class="player"
+src="https://www.youtube-nocookie.com/embed/videoseries?list=PLbMDoDX975cg"
+title="Wild Encounter Files playlist three"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
 </article>
-
 </div>
 </section>
 
-<section class="banner" id="stories">
+<section class="banner">
 <div class="kicker">BEYOND THE ORDINARY</div>
 <h2>Every creature has<br>a <em>story to survive.</em></h2>
 <p>From dramatic escapes to remarkable animal instincts, explore the raw drama and beauty of the wild.</p>
@@ -123,30 +161,35 @@ section.content{padding:50px 0}
 <div>
 <div class="kicker">ABOUT THE CHANNEL</div>
 <h2>Closer to nature.<br><em>Closer to the truth.</em></h2>
-<p class="intro"><strong>Wild Encounter Files</strong> explores extraordinary animal encounters, predator behaviour, survival challenges and the fascinating instincts that shape the natural world.</p>
+<p class="intro"><strong>Wild Encounter Files</strong> explores extraordinary animal encounters, predator behaviour, survival challenges and fascinating wildlife instincts.</p>
 <a class="btn primary" href="https://www.youtube.com/@wildencounterfiles24?sub_confirmation=1" target="_blank" rel="noopener">Subscribe to Our Channel ↗</a>
 </div>
 </section>
 </main>
+
 <footer>
 <strong>WILD ENCOUNTER <span style="color:#d9b96d">FILES</span></strong>
 <span>WILD INSTINCTS. EXTRAORDINARY STORIES.</span>
 <span>© <span id="year"></span> Wild Encounter Files</span>
 </footer>
+
 <script>
-const menuButton=document.getElementById('menu');
-const nav=document.getElementById('nav');
-menuButton.addEventListener('click',function(){
-const open=nav.classList.toggle('open');
-menuButton.setAttribute('aria-expanded',String(open));
+const menuButton = document.getElementById('menu');
+const nav = document.getElementById('nav');
+
+menuButton.addEventListener('click', function () {
+  const open = nav.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(open));
 });
-nav.querySelectorAll('a').forEach(function(link){
-link.addEventListener('click',function(){
-nav.classList.remove('open');
-menuButton.setAttribute('aria-expanded','false');
+
+nav.querySelectorAll('a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    nav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  });
 });
-});
-document.getElementById('year').textContent=new Date().getFullYear();
+
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
