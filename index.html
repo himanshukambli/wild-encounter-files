@@ -74,7 +74,6 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 <button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav id="nav">
 <a href="#home">Home</a>
-<a href="#latest">Latest Videos</a>
 <a href="#playlists">Playlists</a>
 <a href="#about">About</a>
 <a class="subscribe" href="https://www.youtube.com/@wildencounterfiles24" target="_blank" rel="noopener">Subscribe ↗</a>
@@ -88,23 +87,13 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 <h1>THE WILD<br><em>HAS NO SCRIPT.</em></h1>
 <p class="lead">Discover extraordinary wildlife encounters, dramatic predator moments and incredible stories of survival in the natural world.</p>
 <div class="buttons">
-<a class="btn primary" href="#latest">Watch Latest Videos ↓</a>
+<a class="btn primary" href="#playlists">Explore Playlists ↓</a>
 <a class="btn secondary" href="https://www.youtube.com/@wildencounterfiles24" target="_blank" rel="noopener">Visit YouTube ↗</a>
 </div>
 </div>
 </section>
 
-<section class="content" id="latest">
-<div class="kicker">FRESH FROM THE WILD</div>
-<h2>Latest <em>Videos</em></h2>
-<p class="intro">Individual video thumbnails from your channel, arranged with the newest public uploads first. Select any video to watch it on YouTube.</p>
-
-<div class="video-grid" id="latest-videos">
-<article class="video-card">
-<p class="status">Loading latest videos...</p>
-</article>
-</div>
-
+<section class="content" id="playlists">
 <div class="divider"></div>
 
 <div class="kicker">MORE FROM OUR CHANNEL</div>
@@ -168,175 +157,6 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  async function loadLatestVideos() {
-    const container = document.getElementById('latest-videos');
-    const channelId = 'UCT44a1Dt0N1heM4qxSG1akg';
-    const feedUrl =
-      'https://www.youtube.com/feeds/videos.xml?channel_id=' + channelId;
-    const converterUrl =
-      'https://api.rss2json.com/v1/api.json?rss_url=' +
-      encodeURIComponent(feedUrl);
-
-    try {
-      const response = await fetch(converterUrl);
-
-      if (!response.ok) {
-        throw new Error('Could not retrieve the video feed.');
-      }
-
-      const data = await response.json();
-
-      if (data.status !== 'ok' || !Array.isArray(data.items)) {
-        throw new Error('The video feed is unavailable.');
-      }
-
-      const videos = data.items
-        .map(function (item) {
-          const match = (item.link || '').match(
-            /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/#]+)/
-          );
-
-          return {
-            id: match ? match[1] : '',
-            title: item.title || 'Wildlife video',
-            date: item.pubDate || ''
-          };
-        })
-        .filter(function (video) {
-          return video.id && video.title;
-        })
-        .sort(function (a, b) {
-          return new Date(b.date || 0) - new Date(a.date || 0);
-        });
-
-      if (!videos.length) {
-        throw new Error('No public videos were found.');
-      }
-
-      const fragment = document.createDocumentFragment();
-
-      videos.forEach(function (video, index) {
-        const card = document.createElement('article');
-        card.className = 'video-card';
-
-        const thumbnailLink = document.createElement('a');
-        thumbnailLink.href =
-          'https://www.youtube.com/watch?v=' + encodeURIComponent(video.id);
-        thumbnailLink.target = '_blank';
-        thumbnailLink.rel = 'noopener';
-
-        const image = document.createElement('img');
-        image.className = 'video-thumb';
-        image.src =
-          'https://i.ytimg.com/vi/' +
-          encodeURIComponent(video.id) +
-          '/hqdefault.jpg';
-        image.alt = video.title;
-        image.loading = index < 3 ? 'eager' : 'lazy';
-        image.onerror = function () {
-          image.onerror = null;
-          image.src =
-            'https://i.ytimg.com/vi/' +
-            encodeURIComponent(video.id) +
-            '/mqdefault.jpg';
-        };
-
-        thumbnailLink.appendChild(image);
-
-        const heading = document.createElement('h3');
-        heading.textContent = video.title;
-
-        const date = document.createElement('p');
-        date.className = 'video-date';
-
-        if (video.date && !Number.isNaN(Date.parse(video.date))) {
-          date.textContent =
-            'Published: ' +
-            new Date(video.date).toLocaleDateString('en-GB', {
-              day: 'numeric',
-              month: 'short',
-              year: 'numeric'
-            });
-        } else {
-          date.textContent = 'Wild Encounter Files';
-        }
-
-        const watchLink = document.createElement('a');
-        watchLink.className = 'watch';
-        watchLink.href =
-          'https://www.youtube.com/watch?v=' + encodeURIComponent(video.id);
-        watchLink.target = '_blank';
-        watchLink.rel = 'noopener';
-        watchLink.textContent = 'WATCH VIDEO ↗';
-
-        card.appendChild(thumbnailLink);
-        card.appendChild(heading);
-        card.appendChild(date);
-        card.appendChild(watchLink);
-
-        fragment.appendChild(card);
-      });
-
-      container.replaceChildren(fragment);
-    } catch (error) {
-      const card = document.createElement('article');
-      card.className = 'video-card';
-
-      const heading = document.createElement('h3');
-      heading.textContent = 'Latest Videos';
-
-      const message = document.createElement('p');
-      message.textContent =
-        'The automatic video list could not load right now. You can still watch every public upload on our YouTube channel.';
-
-      const link = document.createElement('a');
-      link.className = 'watch';
-      link.href =
-        'https://www.youtube.com/channel/' + channelId + '/videos';
-      link.target = '_blank';
-      link.rel = 'noopener';
-      link.textContent = 'VIEW ALL VIDEOS ON YOUTUBE ↗';
-
-      card.appendChild(heading);
-      card.appendChild(message);
-      card.appendChild(link);
-      container.replaceChildren(card);
-
-      console.error('Wild Encounter Files video feed:', error);
-    }
-  }
-
-
-  function makePlaylistCard(video) {
-    const card = document.createElement('article');
-    card.className = 'video-card';
-    const videoUrl = video.url || ('https://www.youtube.com/watch?v=' + encodeURIComponent(video.id));
-    const thumbnailLink = document.createElement('a');
-    thumbnailLink.href = videoUrl;
-    thumbnailLink.target = '_blank';
-    thumbnailLink.rel = 'noopener';
-    const image = document.createElement('img');
-    image.className = 'video-thumb';
-    image.src = video.thumbnail || ('https://i.ytimg.com/vi/' + encodeURIComponent(video.id) + '/hqdefault.jpg');
-    image.alt = video.title || 'Wildlife video thumbnail';
-    image.loading = 'lazy';
-    image.onerror = function () {
-      image.onerror = null;
-      image.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(video.id) + '/mqdefault.jpg';
-    };
-    thumbnailLink.appendChild(image);
-    const title = document.createElement('h3');
-    title.textContent = video.title || 'Wildlife video';
-    const watch = document.createElement('a');
-    watch.className = 'watch';
-    watch.href = videoUrl;
-    watch.target = '_blank';
-    watch.rel = 'noopener';
-    watch.textContent = 'WATCH VIDEO ↗';
-    card.append(thumbnailLink, title, watch);
-    return card;
-  }
-
   async function loadPlaylists() {
     const apiUrl = 'https://wild-encounter-playlists.kambli-himanshu.workers.dev/api/playlists';
     const containers = Array.from(document.querySelectorAll('.playlist-grid[data-playlist-id]'));
@@ -369,7 +189,6 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
     }
   }
 
-  loadLatestVideos();
   loadPlaylists();
 })();
 </script>
