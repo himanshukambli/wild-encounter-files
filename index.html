@@ -40,6 +40,12 @@ h2{font-size:clamp(34px,5vw,52px);margin:8px 0 16px;line-height:1.1}
 .video-thumb{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#080b09}
 .watch{display:inline-block;margin-top:10px;color:#d9b96d;font-size:11px;font-weight:bold}
 .video-date{font-size:12px;color:#bfc7bc;margin:6px 0}
+.playlist-section{margin-top:34px}
+.playlist-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.playlist-heading h3{font-size:25px;margin:0 0 5px}
+.playlist-heading p{margin:0;color:#bfc7bc;font-size:13px}
+.playlist-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
+.empty-message{color:#bfc7bc;font-size:14px}
 .status{color:#d9b96d;font-size:13px}
 .divider{height:1px;background:#394238;margin:30px 0}
 .banner{background:linear-gradient(90deg,#101713ed,#10171388),url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;padding:65px 6%;text-align:center}
@@ -47,14 +53,14 @@ h2{font-size:clamp(34px,5vw,52px);margin:8px 0 16px;line-height:1.1}
 .about{display:grid;grid-template-columns:1fr 2fr;gap:35px;align-items:center}
 .monogram{font-size:100px;font-weight:900;color:#d9b96d;text-align:center}
 footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#bfc7bc;font-size:12px}
-@media(max-width:900px){.video-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.video-grid,.playlist-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){
  header{flex-wrap:wrap}.menu{display:block}
  nav{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;padding-top:12px}
  nav.open{display:flex}nav a{padding:12px 0}
  .subscribe{text-align:center;margin-top:8px}
  .hero{min-height:510px;background-position:60% center}
- .video-grid{grid-template-columns:1fr}
+ .video-grid,.playlist-grid{grid-template-columns:1fr}
  section.content{padding:48px 0}
  .about{grid-template-columns:1fr;gap:5px}
  .monogram{font-size:65px}
@@ -103,49 +109,19 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 
 <div class="kicker">MORE FROM OUR CHANNEL</div>
 <h2>Featured <em>Playlists</em></h2>
-<p class="intro">Browse each playlist using the video player. Use the playlist menu in the player to select other videos in that collection.</p>
+<p class="intro">Every available video is shown as an individual thumbnail card. Select any thumbnail to watch that video on YouTube, or open the full playlist.</p>
 
-<div class="video-grid" id="playlists">
-
-<article class="video-card">
-<h3>Wild Encounters</h3>
-<p>Dramatic moments and unexpected encounters in nature.</p>
-<iframe class="player"
-src="https://www.youtube.com/embed/videoseries?list=PLGFQBs9S98bI"
-title="Wild Encounters playlist"
-loading="lazy"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-referrerpolicy="strict-origin-when-cross-origin"
-allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
-</article>
-
-<article class="video-card">
-<h3>Predators of the Wild</h3>
-<p>Discover the instincts and strategies of wild animals.</p>
-<iframe class="player"
-src="https://www.youtube.com/embed/videoseries?list=PLKGFUaIbng-s"
-title="Predators of the Wild playlist"
-loading="lazy"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-referrerpolicy="strict-origin-when-cross-origin"
-allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
-</article>
-
-<article class="video-card">
-<h3>Animal Survival Stories</h3>
-<p>Remarkable survival instincts and struggles in the wild.</p>
-<iframe class="player"
-src="https://www.youtube.com/embed/videoseries?list=PLbMDoDX975cg"
-title="Animal Survival Stories playlist"
-loading="lazy"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-referrerpolicy="strict-origin-when-cross-origin"
-allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
-</article>
-
+<div id="playlist-wild" class="playlist-section">
+<div class="playlist-heading"><div><h3>Wild Encounters</h3><p>Dramatic moments and unexpected encounters in nature.</p></div><a class="watch" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a></div>
+<div class="playlist-grid" data-playlist-id="PLGFQBs9S98bI"><article class="video-card"><p class="status">Loading videos...</p></article></div>
+</div>
+<div id="playlist-predators" class="playlist-section">
+<div class="playlist-heading"><div><h3>Predators of the Wild</h3><p>Discover the instincts and strategies of wild animals.</p></div><a class="watch" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a></div>
+<div class="playlist-grid" data-playlist-id="PLKGFUaIbng-s"><article class="video-card"><p class="status">Loading videos...</p></article></div>
+</div>
+<div id="playlist-survival" class="playlist-section">
+<div class="playlist-heading"><div><h3>Animal Survival Stories</h3><p>Remarkable survival instincts and struggles in the wild.</p></div><a class="watch" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a></div>
+<div class="playlist-grid" data-playlist-id="PLbMDoDX975cg"><article class="video-card"><p class="status">Loading videos...</p></article></div>
 </div>
 </section>
 
@@ -330,7 +306,71 @@ allowfullscreen></iframe>
     }
   }
 
+
+  function makePlaylistCard(video) {
+    const card = document.createElement('article');
+    card.className = 'video-card';
+    const videoUrl = video.url || ('https://www.youtube.com/watch?v=' + encodeURIComponent(video.id));
+    const thumbnailLink = document.createElement('a');
+    thumbnailLink.href = videoUrl;
+    thumbnailLink.target = '_blank';
+    thumbnailLink.rel = 'noopener';
+    const image = document.createElement('img');
+    image.className = 'video-thumb';
+    image.src = video.thumbnail || ('https://i.ytimg.com/vi/' + encodeURIComponent(video.id) + '/hqdefault.jpg');
+    image.alt = video.title || 'Wildlife video thumbnail';
+    image.loading = 'lazy';
+    image.onerror = function () {
+      image.onerror = null;
+      image.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(video.id) + '/mqdefault.jpg';
+    };
+    thumbnailLink.appendChild(image);
+    const title = document.createElement('h3');
+    title.textContent = video.title || 'Wildlife video';
+    const watch = document.createElement('a');
+    watch.className = 'watch';
+    watch.href = videoUrl;
+    watch.target = '_blank';
+    watch.rel = 'noopener';
+    watch.textContent = 'WATCH VIDEO ↗';
+    card.append(thumbnailLink, title, watch);
+    return card;
+  }
+
+  async function loadPlaylists() {
+    const apiUrl = 'https://wild-encounter-playlists.kambli-himanshu.workers.dev/api/playlists';
+    const containers = Array.from(document.querySelectorAll('.playlist-grid[data-playlist-id]'));
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Playlist API returned HTTP ' + response.status);
+      const data = await response.json();
+      if (data.status !== 'ok' || !Array.isArray(data.playlists)) throw new Error(data.error || 'Playlist data unavailable');
+      containers.forEach(function (container) {
+        const playlist = data.playlists.find(function (item) { return item.playlistId === container.dataset.playlistId; });
+        if (!playlist || !Array.isArray(playlist.videos) || !playlist.videos.length) {
+          const message = document.createElement('p');
+          message.className = 'empty-message';
+          message.textContent = 'No public videos were found in this playlist.';
+          container.replaceChildren(message);
+          return;
+        }
+        const fragment = document.createDocumentFragment();
+        playlist.videos.forEach(function (video) { fragment.appendChild(makePlaylistCard(video)); });
+        container.replaceChildren(fragment);
+      });
+    } catch (error) {
+      containers.forEach(function (container) {
+        const message = document.createElement('p');
+        message.className = 'empty-message';
+        message.textContent = 'Videos could not load automatically. Please use the “Open Full Playlist” link above.';
+        container.replaceChildren(message);
+      });
+      console.error('Wild Encounter Files playlist API:', error);
+    }
+  }
+
   loadLatestVideos();
+  loadPlaylists();
 })();
 </script>
 </body>
