@@ -19,7 +19,7 @@ header{position:sticky;top:0;z-index:10;background:#101713f5;padding:15px 6%;dis
 nav{display:flex;gap:20px;align-items:center;font-size:12px;letter-spacing:1px;text-transform:uppercase}
 nav a:hover{color:#d9b96d}
 .subscribe{border:1px solid #d9b96d;padding:9px 12px;color:#d9b96d}
-.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.menu{display:none;background:none;color:white;border:0;font-size:25px;cursor:pointer}
 .hero{min-height:570px;display:flex;align-items:center;background:linear-gradient(90deg,#07100bf0,#07100ba8 58%,#07100b22),url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat}
 .hero-content{width:88%;max-width:1150px;margin:auto;padding:70px 0}
 .kicker{font-size:10px;color:#d9b96d;letter-spacing:3px;font-weight:bold;text-transform:uppercase}
@@ -33,11 +33,14 @@ section.content{max-width:1150px;width:88%;margin:auto;padding:65px 0}
 h2{font-size:clamp(34px,5vw,52px);margin:8px 0 16px;line-height:1.1}
 .intro{color:#bfc7bc;line-height:1.8;max-width:720px}
 .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
-.video-card{background:#1a241d;border:1px solid #394238;padding:16px;min-width:0}
-.video-card h3{font-size:21px;line-height:1.25;margin:0 0 8px}
+.video-card{background:#1a241d;border:1px solid #394238;padding:16px;min-width:0;overflow:hidden}
+.video-card h3{font-size:19px;line-height:1.35;margin:12px 0 8px;overflow-wrap:anywhere}
 .video-card p{color:#bfc7bc;font-size:13px}
 .player{width:100%;aspect-ratio:16/9;border:0;display:block;background:#080b09}
+.video-thumb{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#080b09}
 .watch{display:inline-block;margin-top:10px;color:#d9b96d;font-size:11px;font-weight:bold}
+.video-date{font-size:12px;color:#bfc7bc;margin:6px 0}
+.status{color:#d9b96d;font-size:13px}
 .divider{height:1px;background:#394238;margin:30px 0}
 .banner{background:linear-gradient(90deg,#101713ed,#10171388),url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;padding:65px 6%;text-align:center}
 .banner p{color:#c6cec2;line-height:1.8}
@@ -88,19 +91,11 @@ footer{border-top:1px solid #394238;padding:26px 6%;display:flex;justify-content
 <section class="content" id="latest">
 <div class="kicker">FRESH FROM THE WILD</div>
 <h2>Latest <em>Videos</em></h2>
-<p class="intro">Watch the newest uploads from Wild Encounter Files. This player uses your channel's automatic uploads playlist, so you don't have to update the website for every new upload.</p>
+<p class="intro">Individual video thumbnails from your channel, arranged with the newest public uploads first. Select any video to watch it on YouTube.</p>
 
-<div class="video-grid">
+<div class="video-grid" id="latest-videos">
 <article class="video-card">
-<h3>Latest Channel Uploads</h3>
-<p>Browse the channel's newest public videos and select one to play.</p>
-<iframe class="player"
-src="https://www.youtube-nocookie.com/embed/videoseries?list=UUT44a1Dt0N1heM4qxSG1akg"
-title="Latest Wild Encounter Files uploads"
-loading="lazy"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/channel/UCT44a1Dt0N1heM4qxSG1akg/videos" target="_blank" rel="noopener">VIEW ALL VIDEOS ON YOUTUBE ↗</a>
+<p class="status">Loading latest videos...</p>
 </article>
 </div>
 
@@ -108,44 +103,49 @@ allowfullscreen></iframe>
 
 <div class="kicker">MORE FROM OUR CHANNEL</div>
 <h2>Featured <em>Playlists</em></h2>
-<p class="intro">Explore the three collections below. Select a video inside a player to watch it on this website.</p>
+<p class="intro">Browse each playlist using the video player. Use the playlist menu in the player to select other videos in that collection.</p>
 
 <div class="video-grid" id="playlists">
+
 <article class="video-card">
 <h3>Wild Encounters</h3>
 <p>Dramatic moments and unexpected encounters in nature.</p>
 <iframe class="player"
-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLGFQBs9S98bI"
-title="Wild Encounter Files playlist one"
+src="https://www.youtube.com/embed/videoseries?list=PLGFQBs9S98bI"
+title="Wild Encounters playlist"
 loading="lazy"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+referrerpolicy="strict-origin-when-cross-origin"
 allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLGFQBs9S98bI" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
 </article>
 
 <article class="video-card">
 <h3>Predators of the Wild</h3>
 <p>Discover the instincts and strategies of wild animals.</p>
 <iframe class="player"
-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLKGFUaIbng-s"
-title="Wild Encounter Files playlist two"
+src="https://www.youtube.com/embed/videoseries?list=PLKGFUaIbng-s"
+title="Predators of the Wild playlist"
 loading="lazy"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+referrerpolicy="strict-origin-when-cross-origin"
 allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLKGFUaIbng-s" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
 </article>
 
 <article class="video-card">
 <h3>Animal Survival Stories</h3>
 <p>Remarkable survival instincts and struggles in the wild.</p>
 <iframe class="player"
-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLbMDoDX975cg"
-title="Wild Encounter Files playlist three"
+src="https://www.youtube.com/embed/videoseries?list=PLbMDoDX975cg"
+title="Animal Survival Stories playlist"
 loading="lazy"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+referrerpolicy="strict-origin-when-cross-origin"
 allowfullscreen></iframe>
-<a class="watch" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN PLAYLIST ↗</a>
+<a class="watch" href="https://www.youtube.com/playlist?list=PLbMDoDX975cg" target="_blank" rel="noopener">OPEN FULL PLAYLIST ↗</a>
 </article>
+
 </div>
 </section>
 
@@ -174,22 +174,164 @@ allowfullscreen></iframe>
 </footer>
 
 <script>
-const menuButton = document.getElementById('menu');
-const nav = document.getElementById('nav');
+(function () {
+  const menuButton = document.getElementById('menu');
+  const nav = document.getElementById('nav');
 
-menuButton.addEventListener('click', function () {
-  const open = nav.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(open));
-});
-
-nav.querySelectorAll('a').forEach(function (link) {
-  link.addEventListener('click', function () {
-    nav.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.addEventListener('click', function () {
+    const isOpen = nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
   });
-});
 
-document.getElementById('year').textContent = new Date().getFullYear();
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  async function loadLatestVideos() {
+    const container = document.getElementById('latest-videos');
+    const channelId = 'UCT44a1Dt0N1heM4qxSG1akg';
+    const feedUrl =
+      'https://www.youtube.com/feeds/videos.xml?channel_id=' + channelId;
+    const converterUrl =
+      'https://api.rss2json.com/v1/api.json?rss_url=' +
+      encodeURIComponent(feedUrl);
+
+    try {
+      const response = await fetch(converterUrl);
+
+      if (!response.ok) {
+        throw new Error('Could not retrieve the video feed.');
+      }
+
+      const data = await response.json();
+
+      if (data.status !== 'ok' || !Array.isArray(data.items)) {
+        throw new Error('The video feed is unavailable.');
+      }
+
+      const videos = data.items
+        .map(function (item) {
+          const match = (item.link || '').match(
+            /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/#]+)/
+          );
+
+          return {
+            id: match ? match[1] : '',
+            title: item.title || 'Wildlife video',
+            date: item.pubDate || ''
+          };
+        })
+        .filter(function (video) {
+          return video.id && video.title;
+        })
+        .sort(function (a, b) {
+          return new Date(b.date || 0) - new Date(a.date || 0);
+        });
+
+      if (!videos.length) {
+        throw new Error('No public videos were found.');
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      videos.forEach(function (video, index) {
+        const card = document.createElement('article');
+        card.className = 'video-card';
+
+        const thumbnailLink = document.createElement('a');
+        thumbnailLink.href =
+          'https://www.youtube.com/watch?v=' + encodeURIComponent(video.id);
+        thumbnailLink.target = '_blank';
+        thumbnailLink.rel = 'noopener';
+
+        const image = document.createElement('img');
+        image.className = 'video-thumb';
+        image.src =
+          'https://i.ytimg.com/vi/' +
+          encodeURIComponent(video.id) +
+          '/hqdefault.jpg';
+        image.alt = video.title;
+        image.loading = index < 3 ? 'eager' : 'lazy';
+        image.onerror = function () {
+          image.onerror = null;
+          image.src =
+            'https://i.ytimg.com/vi/' +
+            encodeURIComponent(video.id) +
+            '/mqdefault.jpg';
+        };
+
+        thumbnailLink.appendChild(image);
+
+        const heading = document.createElement('h3');
+        heading.textContent = video.title;
+
+        const date = document.createElement('p');
+        date.className = 'video-date';
+
+        if (video.date && !Number.isNaN(Date.parse(video.date))) {
+          date.textContent =
+            'Published: ' +
+            new Date(video.date).toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric'
+            });
+        } else {
+          date.textContent = 'Wild Encounter Files';
+        }
+
+        const watchLink = document.createElement('a');
+        watchLink.className = 'watch';
+        watchLink.href =
+          'https://www.youtube.com/watch?v=' + encodeURIComponent(video.id);
+        watchLink.target = '_blank';
+        watchLink.rel = 'noopener';
+        watchLink.textContent = 'WATCH VIDEO ↗';
+
+        card.appendChild(thumbnailLink);
+        card.appendChild(heading);
+        card.appendChild(date);
+        card.appendChild(watchLink);
+
+        fragment.appendChild(card);
+      });
+
+      container.replaceChildren(fragment);
+    } catch (error) {
+      const card = document.createElement('article');
+      card.className = 'video-card';
+
+      const heading = document.createElement('h3');
+      heading.textContent = 'Latest Videos';
+
+      const message = document.createElement('p');
+      message.textContent =
+        'The automatic video list could not load right now. You can still watch every public upload on our YouTube channel.';
+
+      const link = document.createElement('a');
+      link.className = 'watch';
+      link.href =
+        'https://www.youtube.com/channel/' + channelId + '/videos';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'VIEW ALL VIDEOS ON YOUTUBE ↗';
+
+      card.appendChild(heading);
+      card.appendChild(message);
+      card.appendChild(link);
+      container.replaceChildren(card);
+
+      console.error('Wild Encounter Files video feed:', error);
+    }
+  }
+
+  loadLatestVideos();
+})();
 </script>
 </body>
 </html>
